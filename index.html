@@ -3,55 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Vue Chapter 2</title>
+    <title>Chapter 7: Input Number Component</title>
 </head>
 
 <body>
     <div id="app">
-        <input type="text" v-model="name" placeholder="Your name">
-        <h1>Hello, {{ name }}</h1>
-        <h2> {{ date }}</h2>
-        <span>{{ link }}</span>
-        <span v-html="link"></span>
-        <p v-if="show">Click button to display/ hide</p>
-        <input v-on:click="toggleDisplay" value="Click me" type="button">
+        <number-input v-model="value" :max="10" :min="0" ref="numberInput">
+            
+        </number-input>
     </div>
     <script src="https://unpkg.com/vue/dist/vue.js"> </script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                name: '',
-                date: new Date(),
-                link: '<a herf="#">This is a link</a>',
-                show: true
-            },
-            methods: {
-                toggleDisplay: function(){
-                    this.show = !this.show;
-                }
-            },
-            created() {
-                console.log('function in created');
-                if( this.$el ){
-                    console.log('Cannot get $el in created method');
-                }
-            },
-            mounted() {
-                console.log('mounted will be triggered when vue instance be bind to el');
-                console.log(this.$el);
-                let _this = this;
-                this.timer = setInterval(function(){
-                    _this.date = new Date();
-                }, 1000);
-            },
-            beforeDestroy() {
-                if( this.timer) {
-                    clearInterval(this.timer);
-                }
-            },
-        })
-    </script>
+    <script src="input-number.js"></script>
+    <script src="index.js"></script>
+    
 </body>
 
 </html>
